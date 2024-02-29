@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="cricket.css">
+    <title>Cricket Game</title>
+</head>
+<body>
+
+    
+        <h1>Bat Ball Wicket Game</h1>
+
+        <!-- Bat Button -->
+        <button id="bat" class="equip"
+        onclick="
+        generateComputerChoice();
+        console.log(`computer choice is ${computerChoice}`);
+        // To Get Result
+        getResult('Bat',computerChoice);
+        displayResult();
+        ">Bat</button>
+
+        <!-- Ball Button -->
+
+        <button id="ball" class="equip"
+        onclick="
+        generateComputerChoice();
+        console.log(`computer choice is ${computerChoice}`);
+        getResult('Ball',computerChoice);
+        displayResult();
+        "
+        >Ball</button>
+
+        <!-- Stamp Button -->
+
+        <button id="stamp" class="equip"
+        onclick="
+        generateComputerChoice();
+        console.log(`computer choice is ${computerChoice}`);
+        getResult('Wicket',computerChoice);
+        displayResult();
+        "
+        >Stamp</button>
+
+<script>
+
+    let computerChoice,result;
+    function generateComputerChoice(){
+        let randomNumber=Math.random()*3;
+
+        if(randomNumber>0 && randomNumber<1)
+        {
+            computerChoice='Bat';
+        }
+        else if(randomNumber>1 && randomNumber<2)
+        {
+            computerChoice='Ball';
+        }
+        else
+        {
+            computerChoice='Wicket';
+        }
+    }
+
+    let score={
+        win:0,
+        lost:0,
+        tie:0,
+    };
+
+    // Function to getResult
+    function getResult(userMove,computerMove){
+        
+        if(userMove=== computerMove)
+        {
+            score.tie++;
+            result='Tie';
+        }
+        else if(userMove==='Bat' && computerMove==='Ball')
+        {
+            score.win++;
+            result='User Won';
+        }
+        else if(userMove==='Ball' && computerMove==='Bat')
+        {
+            score.lost++;
+            result='Computer Won';
+        }
+        else if(userMove==='Wicket' && computerMove==='Ball')
+        {
+            score.lost++;
+            result='Computer Won';
+        }
+        else if(userMove==='Ball' && computerMove==='Wicket')
+        {
+            score.win++;
+            result='User Won';
+        }
+        else if(userMove=='Bat'&& computerMove==='Wicket')
+        {
+            score.lost++;
+            result='Computer Won';
+        }
+        else if(userMove==='Wicket'&& computerMove==='Bat')
+        {
+            score.win++;
+            result='User Won';
+        }
+    }
+    function displayResult()
+    {//console.log(score);   
+        alert(`user choice : Stamp Computer Choice: ${computerChoice} Result : ${result}
+        Win: ${score.win} Lost: ${score.lost} tie: ${score.tie}
+        `);
+    }
+</script>        
+</body>
+</html>
